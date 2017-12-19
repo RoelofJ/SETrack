@@ -1,0 +1,28 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:DoubleToColorConverter x:Key="DoubleToColorConverter"/>
+        <local:DoubleToBoolConverter x:Key="DoubleToBoolConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Slider x:Name="slider" AutomationProperties.Name="mySlider" Maximum="30" SmallChange="1" RenderTransformOrigin="0.717,0.806"/>
+        <Button Content="Button" IsEnabled="{Binding Value, ConverterParameter=5, Converter={StaticResource DoubleToBoolConverter}, ElementName=slider}" Grid.Row="2"/>
+        <TextBox TextWrapping="Wrap" Text="{Binding Value, ElementName=slider}" Grid.Row="1">
+            <TextBox.Background>
+                <SolidColorBrush Color="{Binding Value, ConverterParameter=10, Converter={StaticResource DoubleToColorConverter}, ElementName=slider}"/>
+            </TextBox.Background>
+        </TextBox>
+
+    </Grid>
+</Window>
