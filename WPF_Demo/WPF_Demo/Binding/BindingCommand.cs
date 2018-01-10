@@ -10,19 +10,19 @@ namespace WPF_Demo.Binding
     public class BindingCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        private Action _actualAction;
-        public BindingCommand(Action action)
+        private BindingViewModel _viewmodel;
+        public BindingCommand(BindingViewModel vm)
         {
-            this._actualAction = action;
+            this._viewmodel = vm;
         }
         public bool CanExecute(object parameter)
         {
-            return true;
+            return this._viewmodel.SliderValue > 50;
         }
 
         public void Execute(object parameter)
         {
-            this._actualAction();
+            this._viewmodel.ClickCount++;
         }
     }
 }

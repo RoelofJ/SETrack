@@ -1,0 +1,24 @@
+﻿<Window x:Class="WPF_Demo.Controls.Controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:custom="clr-namespace:CustomControl_Demo;assembly=CustomControl_Demo"
+        xmlns:local="clr-namespace:WPF_Demo.Controls"
+        mc:Ignorable="d"
+        Title="Controls" Height="400" Width="600">
+    <Window.DataContext>
+        <local:ControlsViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TabControl Cursor="Cross">
+            <TabItem Header="Tab 1">
+                <custom:NumericControl />
+            </TabItem>
+            <TabItem Header="Tab 2">
+                <DataGrid Name="dataGrid" ItemsSource="{Binding Employees}" />
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>

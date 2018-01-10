@@ -1,8 +1,8 @@
-﻿<Application x:Class="WPF_Demo.App"
+﻿<Application x:Class="CustomControl_Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WPF_Demo"
-             StartupUri="Controls/Controls.xaml">
+             xmlns:local="clr-namespace:CustomControl_Demo"
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>

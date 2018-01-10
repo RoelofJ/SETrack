@@ -13,9 +13,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Content="{Binding ButtonText}" Command="{Binding BindingCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" IsEnabled="{Binding Value, ConverterParameter=20, Converter={StaticResource DoubleToBoolConverter}, ElementName=mySlider}"/>
+        <Button Content="{Binding ButtonText}" Command="{Binding BindingCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
 
         <Slider x:Name="mySlider" Value="{Binding SliderValue}" HorizontalAlignment="Left" Margin="40,49,0,0" VerticalAlignment="Top" Height="20" Width="200" Maximum="100" SmallChange="1" LargeChange="5" Cursor="Hand" Grid.ColumnSpan="2"/>
         <TextBlock Width="80" Height="80" Margin="357,49,56.6,341.4" Text="{Binding Value, ElementName=mySlider}" Grid.ColumnSpan="2" FontSize="{Binding SliderValue}"/>
@@ -37,6 +39,6 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-
+        <ListBox ItemsSource="{Binding MyListItems}" Grid.ColumnSpan="2" Margin="336,217,9.6,10.4"/>
     </Grid>
 </Window>

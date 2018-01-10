@@ -8,7 +8,9 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
 
-        <Calendar HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Calendar HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
+            
+        </Calendar>
         <DatePicker HorizontalAlignment="Left" Margin="45,181,0,0" VerticalAlignment="Top"/>
         <DockPanel HorizontalAlignment="Left" Height="301" LastChildFill="False" Margin="321,10,0,0" VerticalAlignment="Top" Width="187">
             <Button Content="Button" Height="50" VerticalAlignment="Top" Width="184" Margin="0,251,0,-0.2"/>
@@ -17,4 +19,8 @@
         <Ellipse x:Name="MyEllipse" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="89,105,0,0" Stroke="Black" VerticalAlignment="Top" Width="100" DragLeave="MyEllipse_DragLeave"/>
 
     </Grid>
+    <!--<WrapPanel>Olaf</WrapPanel>
+    <StackPanel>Dirkjan</StackPanel>
+    <DockPanel>Tama</DockPanel>
+    <Grid>Michael</Grid>-->
 </Window>

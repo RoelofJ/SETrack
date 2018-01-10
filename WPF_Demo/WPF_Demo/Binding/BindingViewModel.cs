@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,7 +17,7 @@ namespace WPF_Demo.Binding
         public int SliderValue
         {
             get { return _sliderValue; }
-            set { _sliderValue = value; OnPropertyChanged(nameof(SliderValue)); }
+            set { _sliderValue = value; OnPropertyChanged(); }
         }
 
         private string _name;
@@ -24,7 +25,7 @@ namespace WPF_Demo.Binding
         public string Name
         {
             get { return _name; }
-            set { _name = value; OnPropertyChanged(nameof(Name)); }
+            set { _name = value; OnPropertyChanged(); }
         }
 
         private int _clickCount;
@@ -39,7 +40,7 @@ namespace WPF_Demo.Binding
             {
                 _clickCount = value;
                 #region
-                OnPropertyChanged(nameof(ClickCount));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(ButtonText));
                 #endregion
             }
@@ -76,7 +77,7 @@ namespace WPF_Demo.Binding
         public BindingViewModel()
         {
             this.ButtonStartText = "Clicks: ";
-            this.BindingCommand = new BindingCommand(CommandFunction);
+            this.BindingCommand = new BindingCommand(this);
             this.MyListItems = new ObservableCollection<string> {
                 "One",
                 "Two",
@@ -84,12 +85,7 @@ namespace WPF_Demo.Binding
             };
         }
 
-        private void CommandFunction()
-        {
-            this.ClickCount++;
-        }
-
-        private void OnPropertyChanged(string propName)
+        private void OnPropertyChanged([CallerMemberName] string propName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
