@@ -1,0 +1,156 @@
+﻿<Window x:Class="Templates_Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Templates_Demo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ControlTemplate x:Key="WindmillButton" TargetType="{x:Type Button}">
+            <Grid Height="100" Margin="0,0,-15.8,0" Width="90">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.3" To="Pressed">
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0" From="0.4" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path"/>
+                                    <DoubleAnimation Duration="0" From="1.2" To="1.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path"/>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path1">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="16.4"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path1">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="-8.4"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path2">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="-16.4"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path2">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="-9.2"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </VisualTransition>
+                            <VisualTransition From="Pressed" GeneratedDuration="0:0:0.3"/>
+                            <VisualTransition GeneratedDuration="0:0:0.5" To="MouseOver"/>
+                            <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.5"/>
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-0.4"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-20.8"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="35.6"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="120"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="path2">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="240"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path2">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-70"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path2">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="path1">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path1">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="34.8"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path1">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-61.6"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-0.4"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-20.8"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-0.4"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="path">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="-20.8"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Path x:Name="path2" Data="M10,0.5 C15.246705,0.5 19.5,10.984148 19.5,23.916999 19.5,25.129454 19.462618,26.320387 19.390539,27.483178 L19.319046,28.469999 19.5,28.469999 19.5,57.469999 0.5,57.469999 0.5,28.469999 0.68095481,28.469999 0.60946131,27.483178 C0.53738278,26.320387 0.5000003,25.129454 0.5,23.916999 0.5000003,10.984148 4.7532952,0.5 10,0.5 z" HorizontalAlignment="Right" Height="60" Margin="-2,0,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Bottom" Width="20" RenderTransformOrigin="0.5,0.5">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Blue" Offset="0"/>
+                            <GradientStop Color="Red" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="120"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="path" Data="M10,0.5 C15.246705,0.5 19.5,10.984148 19.5,23.916999 19.5,25.129454 19.462618,26.320387 19.390539,27.483178 L19.319046,28.469999 19.5,28.469999 19.5,57.469999 0.5,57.469999 0.5,28.469999 0.68095481,28.469999 0.60946131,27.483178 C0.53738278,26.320387 0.5000003,25.129454 0.5,23.916999 0.5000003,10.984148 4.7532952,0.5 10,0.5 z" HorizontalAlignment="Center" Height="60" Margin="0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Blue" Offset="0"/>
+                            <GradientStop Color="Red" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="path1" Data="M10,0.5 C15.246705,0.5 19.5,10.984148 19.5,23.916999 19.5,25.129454 19.462618,26.320387 19.390539,27.483178 L19.319046,28.469999 19.5,28.469999 19.5,57.469999 0.5,57.469999 0.5,28.469999 0.68095481,28.469999 0.60946131,27.483178 C0.53738278,26.320387 0.5000003,25.129454 0.5,23.916999 0.5000003,10.984148 4.7532952,0.5 10,0.5 z" HorizontalAlignment="Left" Height="60" Margin="0" Stretch="Fill" Stroke="Black" VerticalAlignment="Bottom" Width="20" RenderTransformOrigin="0.5,0.5">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Blue" Offset="0"/>
+                            <GradientStop Color="Red" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-120"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Ellipse Fill="Orange" HorizontalAlignment="Center" Height="30" Margin="0" Stroke="Black" VerticalAlignment="Center" Width="30"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="231.09,131.147,0,0" VerticalAlignment="Top" Width="75" Template="{DynamicResource WindmillButton}"/>
+
+    </Grid>
+</Window>
