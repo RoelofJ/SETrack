@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Unity.Attributes;
 
 namespace WPF_Demo.DependencyInjection
 {
@@ -19,6 +20,12 @@ namespace WPF_Demo.DependencyInjection
     /// </summary>
     public partial class InjectionView : Window
     {
+        [Dependency]
+        public InjectionViewModel ViewModel
+        {
+            set { DataContext = value; }
+        }
+
         public InjectionView()
         {
             InitializeComponent();

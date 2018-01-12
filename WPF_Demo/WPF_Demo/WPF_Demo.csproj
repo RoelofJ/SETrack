@@ -111,6 +111,9 @@
       <DependentUpon>InjectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DependencyInjection\InjectionViewModel.cs" />
+    <Compile Include="DependencyInjection\IntValue.cs" />
+    <Compile Include="DependencyInjection\IValue.cs" />
+    <Compile Include="DependencyInjection\StringValue.cs" />
     <Compile Include="Example.xaml.cs">
       <DependentUpon>Example.xaml</DependentUpon>
     </Compile>
