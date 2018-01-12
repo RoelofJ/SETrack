@@ -1,0 +1,23 @@
+﻿<Window x:Class="PerformanceTestProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PerformanceTestProject"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Margin="4">
+            <Button Content="Add stackpanel" DockPanel.Dock="Bottom" Click="Button_Click"/>
+            <Label DockPanel.Dock="Top">Number of Panels: </Label>
+            <TextBox Name="nrOfStackPanels"/>
+        </DockPanel>
+        <StackPanel Grid.Column="1" Name="HierGaatHetGebeuren" Background="#FF8FCB00">
+            <Label>Hier Gaat Het Gebeuren</Label>
+        </StackPanel>
+    </Grid>
+</Window>
