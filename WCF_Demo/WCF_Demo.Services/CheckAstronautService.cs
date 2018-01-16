@@ -13,7 +13,7 @@ namespace WCF_Demo.Services
         private const int DaysPerYear = 365; //from configuration
         private const int MaximumAge = 60; //from configuration
 
-        public bool DoFinalCheckup(AstronautsData data)
+        public bool DoFinalCheckup(FlightRosterData data)
         {
             var astronauts = GetAstronautsFromService(data);
             foreach (var astronaut in astronauts)
@@ -34,7 +34,7 @@ namespace WCF_Demo.Services
             return true;
         }
 
-        public bool DoPreliminaryCheckup(AstronautsData data)
+        public bool DoPreliminaryCheckup(FlightRosterData data)
         {
             var astronauts = GetAstronautsFromService(data);
             foreach (var astronaut in astronauts)
@@ -51,7 +51,26 @@ namespace WCF_Demo.Services
             return true;
         }
 
-        private List<Astronaut> GetAstronautsFromService(AstronautsData data)
+        public AstronautData GetAstronaut(string name)
+        {
+            var astronaut = GetAstronautByName(name);
+            var result = new AstronautData
+            {
+                Name = name,
+                Id = astronaut.ID,
+                Nationality = astronaut.Nationality,
+                FullyCleared = astronaut.Clearance == NASAClearance.Full
+            };
+            return result;
+        }
+
+        private Astronaut GetAstronautByName(string name)
+        {
+            var db = new AstronautsDB(); //should be done via dependency injection
+            return db.GetAstronaut(name);
+        }
+
+        private List<Astronaut> GetAstronautsFromService(FlightRosterData data)
         {
             var db = new AstronautsDB(); //should be done via dependency injection
             var result = new List<Astronaut>

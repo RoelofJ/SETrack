@@ -11,8 +11,10 @@ namespace WCF_Demo.Contracts
     public interface ICheckAstronautsService
     {
         [OperationContract]
-        bool DoPreliminaryCheckup(AstronautsData data);
+        bool DoPreliminaryCheckup(FlightRosterData data);
         [OperationContract]
-        bool DoFinalCheckup(AstronautsData data);
+        bool DoFinalCheckup(FlightRosterData data);
+        [OperationContract]
+        AstronautData GetAstronaut(string name);
     }
 }

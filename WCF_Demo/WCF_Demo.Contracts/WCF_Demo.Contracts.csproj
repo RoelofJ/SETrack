@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AstronautsData.cs" />
+    <Compile Include="AstronautData.cs" />
+    <Compile Include="FlightRosterData.cs" />
     <Compile Include="ICheckAstronautsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace WCF_Demo.Contracts
 {
     [DataContract]
-    public class AstronautsData
+    public class FlightRosterData
     {
         [DataMember]
         public string CaptainName { get; set; }
