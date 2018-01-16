@@ -26,8 +26,10 @@ namespace WPF_Demo.DependencyInjection
             set { DataContext = value; }
         }
 
-        public InjectionView()
+        public InjectionView(IValue value)
         {
+            
+            this.DataContext = new InjectionViewModel(value);
             InitializeComponent();
         }
     }
