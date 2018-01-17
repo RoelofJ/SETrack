@@ -1,0 +1,36 @@
+﻿<Window x:Class="WCF_Demo.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WCF_Demo.Client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Content="Captain:" />
+        <Label Content="Second:" Grid.Row="1" />
+        <Label Content="Navigator:" Grid.Row="2" />
+        <Label Content="Engineer:" Grid.Row="3" />
+        <TextBox Name="CaptainName" Grid.Column="1" Width="150" />
+        <TextBox Name="SecondName" Grid.Column="1" Grid.Row="1" Width="150" />
+        <TextBox Name="NavigatorName" Grid.Column="1" Grid.Row="2" Width="150" />
+        <TextBox Name="EngineerName" Grid.Column="1" Grid.Row="3" Width="150" />
+        <Button Content="Preliminary" Grid.Row="4" Width="Auto" Click="Preliminary_Click" />
+        <Button Content="Final" Grid.Column="1" Grid.Row="4" Click="Final_Click" />
+        <TextBlock Name="PreliminaryResult" Grid.Row="5" />
+        <TextBlock Name="FinalResult" Grid.Column="1" Grid.Row="5" />
+    </Grid>
+</Window>
