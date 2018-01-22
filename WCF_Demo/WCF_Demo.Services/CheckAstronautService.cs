@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using WCF_Demo.Contracts;
 using WCF_Demo.Data;
 
@@ -88,13 +89,18 @@ namespace WCF_Demo.Services
                     throw new ArgumentException("Some exception");
                 }
             }
-            
            OperationContext.Current.SetTransactionComplete();
 
         }
 
+        [OperationBehavior(TransactionScopeRequired = false)]
         public IEnumerable<string> GetNames()
         {
+            //example of manual transaction
+            using (TransactionScope scope = new TransactionScope())
+            {
+                scope.Complete();
+            }
             return Names;
         }
 

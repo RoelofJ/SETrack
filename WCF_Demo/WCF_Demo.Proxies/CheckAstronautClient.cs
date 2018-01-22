@@ -38,7 +38,13 @@ namespace WCF_Demo.Proxies
 
         public IEnumerable<string> GetNames()
         {
-            return Channel.GetNames();
+            if (this.State == CommunicationState.Opened)
+                return Channel.GetNames();
+            else
+            {
+                this.Abort();
+                return new string[0];
+            }
         }
     }
 }
