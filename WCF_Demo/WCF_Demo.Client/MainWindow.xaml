@@ -19,6 +19,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label Content="Captain:" />
         <Label Content="Second:" Grid.Row="1" />
@@ -35,5 +39,7 @@
         <Label Content="AllNames:" Grid.Row="6" />
         <TextBox Name="AllNamesBox" Grid.Column="1" Grid.Row="6" Width="150" />
         <Button Content="Send names" Grid.Column="2" Grid.Row="6" Click="SendNames_Click" />
+        <TextBox Name="RetrievedNames" Grid.Column="1" Grid.Row="7" Width="150" />
+        <Button Content="Get names" Grid.Column="2" Grid.Row="7" Click="GetNames_Click" />
     </Grid>
 </Window>

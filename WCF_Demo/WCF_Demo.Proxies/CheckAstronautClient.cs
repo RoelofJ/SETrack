@@ -27,7 +27,18 @@ namespace WCF_Demo.Proxies
 
         public void SetNames(IEnumerable<string> names)
         {
-            Channel.SetNames(names);
+            try
+            {
+                Channel.SetNames(names);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public IEnumerable<string> GetNames()
+        {
+            return Channel.GetNames();
         }
     }
 }

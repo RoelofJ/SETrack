@@ -19,5 +19,7 @@ namespace WCF_Demo.Contracts
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
         void SetNames(IEnumerable<string> names);
+        [OperationContract]
+        IEnumerable<string> GetNames();
     }
 }

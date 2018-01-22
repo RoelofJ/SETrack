@@ -93,6 +93,11 @@ namespace WCF_Demo.Services
 
         }
 
+        public IEnumerable<string> GetNames()
+        {
+            return Names;
+        }
+
         private Astronaut GetAstronautByName(string name)
         {
             var db = new AstronautsDB(); //should be done via dependency injection
