@@ -32,5 +32,8 @@
         <Button Content="Final" Grid.Column="1" Grid.Row="4" Click="Final_Click" />
         <TextBlock Name="PreliminaryResult" Grid.Row="5" />
         <TextBlock Name="FinalResult" Grid.Column="1" Grid.Row="5" />
+        <Label Content="AllNames:" Grid.Row="6" />
+        <TextBox Name="AllNamesBox" Grid.Column="1" Grid.Row="6" Width="150" />
+        <Button Content="Send names" Grid.Column="2" Grid.Row="6" Click="SendNames_Click" />
     </Grid>
 </Window>

@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace WCF_Demo.Contracts
 {
-    [ServiceContract]
+    [ServiceContract(SessionMode = SessionMode.Required)]
     public interface ICheckAstronautsService
     {
-        [OperationContract]
+        [OperationContract(IsInitiating = false)]
         bool DoPreliminaryCheckup(FlightRosterData data);
-        [OperationContract]
+        [OperationContract(IsInitiating = false, IsTerminating = true)]
         bool DoFinalCheckup(FlightRosterData data);
         [OperationContract]
         AstronautData GetAstronaut(string name);
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        void SetNames(IEnumerable<string> names);
     }
 }

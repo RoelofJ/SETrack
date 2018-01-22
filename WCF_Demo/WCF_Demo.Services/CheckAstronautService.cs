@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using WCF_Demo.Contracts;
@@ -8,10 +9,22 @@ using WCF_Demo.Data;
 
 namespace WCF_Demo.Services
 {
+    [ServiceBehavior(
+        InstanceContextMode = InstanceContextMode.PerSession, 
+        ConcurrencyMode = ConcurrencyMode.Single, 
+        ReleaseServiceInstanceOnTransactionComplete = false)]
     public class CheckAstronautService : ICheckAstronautsService
     {
         private const int DaysPerYear = 365; //from configuration
         private const int MaximumAge = 60; //from configuration
+        private string names;
+        public IEnumerable<string> Names
+        {
+            get
+            {
+                return names.Split(';');
+            }
+        }
 
         public bool DoFinalCheckup(FlightRosterData data)
         {
@@ -62,6 +75,22 @@ namespace WCF_Demo.Services
                 FullyCleared = astronaut.Clearance == NASAClearance.Full
             };
             return result;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = false)] //autocomplete is default true
+        public void SetNames(IEnumerable<string> input)
+        {
+            for (int i = 0; i < input.Count(); i++)
+            {
+                names += ";" + input.ElementAt(i);
+                if (i == 3)
+                {
+                    throw new ArgumentException("Some exception");
+                }
+            }
+            
+           OperationContext.Current.SetTransactionComplete();
+
         }
 
         private Astronaut GetAstronautByName(string name)

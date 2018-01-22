@@ -55,6 +55,13 @@ namespace WCF_Demo.Client
             }
         }
 
+        private void SendNames_Click(object sender, RoutedEventArgs evt)
+        {
+            var proxy = new CheckAstronautClient();
+            proxy.SetNames(AllNamesBox.Text.Split(' '));
+            proxy.Close();
+        }
+
         private FlightRosterData ParseForm()
         {
             return new FlightRosterData

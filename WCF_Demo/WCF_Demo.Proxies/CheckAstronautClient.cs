@@ -24,5 +24,10 @@ namespace WCF_Demo.Proxies
         {
             return Channel.GetAstronaut(name);
         }
+
+        public void SetNames(IEnumerable<string> names)
+        {
+            Channel.SetNames(names);
+        }
     }
 }
