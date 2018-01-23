@@ -13,7 +13,8 @@ namespace WCF_Demo.Services
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.PerSession, 
         ConcurrencyMode = ConcurrencyMode.Single, 
-        ReleaseServiceInstanceOnTransactionComplete = false)]
+        ReleaseServiceInstanceOnTransactionComplete = false,
+        IncludeExceptionDetailInFaults = false)]
     public class CheckAstronautService : ICheckAstronautsService
     {
         private const int DaysPerYear = 365; //from configuration
@@ -23,7 +24,7 @@ namespace WCF_Demo.Services
         {
             get
             {
-                return names.Split(';');
+                return names.Length != 0 ? new string[0] : names.Split(';');
             }
         }
 
@@ -91,6 +92,19 @@ namespace WCF_Demo.Services
             }
            OperationContext.Current.SetTransactionComplete();
 
+        }
+
+        public void ThrowException()
+        {
+            //var ex = new ArgumentNullException("But we don't have parameters!");
+            var faultData = new MyFaultData
+            {
+                Name = "ThrowException",
+                Message = "Throwing some exception in my service",
+                Index = 5
+            };
+
+            throw new FaultException<MyFaultData>(faultData, "My extra message");
         }
 
         [OperationBehavior(TransactionScopeRequired = false)]

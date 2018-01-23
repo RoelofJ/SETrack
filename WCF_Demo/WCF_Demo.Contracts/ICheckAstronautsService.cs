@@ -21,5 +21,9 @@ namespace WCF_Demo.Contracts
         void SetNames(IEnumerable<string> names);
         [OperationContract]
         IEnumerable<string> GetNames();
+        [OperationContract]
+        [FaultContract(typeof(ArgumentNullException))]
+        [FaultContract(typeof(MyFaultData))]
+        void ThrowException();
     }
 }

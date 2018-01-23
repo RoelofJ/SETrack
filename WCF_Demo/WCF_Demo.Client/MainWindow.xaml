@@ -41,5 +41,6 @@
         <Button Content="Send names" Grid.Column="2" Grid.Row="6" Click="SendNames_Click" />
         <TextBox Name="RetrievedNames" Grid.Column="1" Grid.Row="7" Width="150" />
         <Button Content="Get names" Grid.Column="2" Grid.Row="7" Click="GetNames_Click" />
+        <Button Content="Throw exception" Grid.Row="8" Grid.ColumnSpan="2" Click="Exception_Click" />
     </Grid>
 </Window>

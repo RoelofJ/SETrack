@@ -22,11 +22,20 @@ namespace WCF_Demo.Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        public CheckAstronautClient Proxy { get; set; }
+        private CheckAstronautClient _proxy;
+        public CheckAstronautClient Proxy {
+            get
+            {
+                if (_proxy == null || _proxy.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    _proxy = new CheckAstronautClient();
+                    _proxy.Open();
+                }
+                return _proxy;
+            }
+        }
         public MainWindow()
         {
-            Proxy = new CheckAstronautClient();
-            Proxy.Open();
             InitializeComponent();
         }
 
@@ -66,6 +75,11 @@ namespace WCF_Demo.Client
         private void GetNames_Click(object sender, RoutedEventArgs evt)
         {
             RetrievedNames.Text = string.Join(" ", Proxy.GetNames());
+        }
+
+        private void Exception_Click(object sender, RoutedEventArgs evt)
+        {
+            Proxy.ThrowException();
         }
 
         private FlightRosterData ParseForm()
