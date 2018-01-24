@@ -1,0 +1,21 @@
+﻿<Window x:Class="LuckyMinerWCFService.ClientAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LuckyMinerWCFService"
+        mc:Ignorable="d"
+        Title="ClientAccount" Height="300" Width="300">
+    <Grid>
+        <Label Name="balanceLabel" Content="Label" HorizontalAlignment="Left" Margin="43,73,0,0" VerticalAlignment="Top"/>
+        <Button Name="deposit100" Content="deposit 100 dollar" HorizontalAlignment="Left" Margin="43,170,0,0" VerticalAlignment="Top" Width="75" Click="deposit100_Click"/>
+        <Button Name="writeToJan" Content="Give jan 100 dollar" HorizontalAlignment="Left" Margin="43,132,0,0" VerticalAlignment="Top" Width="75" Click="writeToJan_Click"/>
+        <Button Name="updatebalance" Content="updatebalance" HorizontalAlignment="Left" Margin="43,214,0,0" VerticalAlignment="Top" Width="75" Click="updatebalance_Click"/>
+        <Button Name="AddJan" Content="Add jan client" HorizontalAlignment="Left" Margin="174,132,0,0" VerticalAlignment="Top" Width="75" Click="AddJan_Click"/>
+        <Label Name="JanBalanceLabel" Content="JanBalance" HorizontalAlignment="Left" Margin="182,27,0,0" VerticalAlignment="Top"/>
+        <Button Name="UpdateJanBalance" Content="Update jan balance" HorizontalAlignment="Left" Margin="174,170,0,0" VerticalAlignment="Top" Width="75" Click="UpdateJanBalance_Click"/>
+        <Label Content="Jan balance:" HorizontalAlignment="Left" Margin="108,27,0,0" VerticalAlignment="Top"/>
+        <Label Content="DirkBalance" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
