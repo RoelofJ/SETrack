@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstronautData.cs" />
+    <Compile Include="RosterClearedData.cs" />
     <Compile Include="FlightRosterData.cs" />
     <Compile Include="ICheckAstronautsService.cs" />
+    <Compile Include="IFinalCheckAstronautService.cs" />
     <Compile Include="MyFaultData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WCF_Demo.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -13,6 +13,16 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -42,5 +52,30 @@
         <TextBox Name="RetrievedNames" Grid.Column="1" Grid.Row="7" Width="150" />
         <Button Content="Get names" Grid.Column="2" Grid.Row="7" Click="GetNames_Click" />
         <Button Content="Throw exception" Grid.Row="8" Grid.ColumnSpan="2" Click="Exception_Click" />
+        <Label Content="Cleared:" Grid.Row="9" Grid.ColumnSpan="2" FontSize="15" FontStretch="ExtraExpanded" FontWeight="Bold" />
+        <Label Content="Captain" Grid.Row="10"/>
+        <CheckBox Name="CaptainCleared" IsEnabled="False" Grid.Row="10" Grid.Column="1">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <Label Content="Second in command" Grid.Row="11"/>
+        <CheckBox Name="SecondCleared" IsEnabled="False" Grid.Row="11" Grid.Column="1">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <Label Content="Navigator" Grid.Row="12"/>
+        <CheckBox Name="NavigatorCleared" IsEnabled="False" Grid.Row="12" Grid.Column="1">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <Label Content="Engineer" Grid.Row="13"/>
+        <CheckBox Name="EngineerCleared" IsEnabled="False" Grid.Row="13" Grid.Column="1">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
     </Grid>
 </Window>

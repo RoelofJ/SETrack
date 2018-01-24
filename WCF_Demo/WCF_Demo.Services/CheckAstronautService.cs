@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using WCF_Demo.Contracts;
@@ -12,10 +13,10 @@ namespace WCF_Demo.Services
 {
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.PerSession, 
-        ConcurrencyMode = ConcurrencyMode.Single, 
+        ConcurrencyMode = ConcurrencyMode.Reentrant,
         ReleaseServiceInstanceOnTransactionComplete = false,
-        IncludeExceptionDetailInFaults = false)]
-    public class CheckAstronautService : ICheckAstronautsService
+        IncludeExceptionDetailInFaults = true)]
+    public class CheckAstronautService : ICheckAstronautsService, IFinalCheckAstronautService
     {
         private const int DaysPerYear = 365; //from configuration
         private const int MaximumAge = 60; //from configuration
@@ -28,25 +29,51 @@ namespace WCF_Demo.Services
             }
         }
 
-        public bool DoFinalCheckup(FlightRosterData data)
+        public bool DoFinalCheckup(FlightRosterData rosterData)
         {
-            var astronauts = GetAstronautsFromService(data);
+            var result = true;
+            var astronauts = GetAstronautsFromService(rosterData);
+            var clearedData = new RosterClearedData
+            {
+                Captain = false,
+                SecondInCommand = false,
+                Engineer = false,
+                Navigator = false
+            };
             foreach (var astronaut in astronauts)
             {
+                var astronautCleared = true;
                 if (astronaut.Clearance == NASAClearance.Pending || astronaut.Clearance == NASAClearance.Limited)
                 {
-                    return false;
+                    astronautCleared = false;
                 }
                 if (astronaut.LastMedicalCheck < new DateTime(2015, 1, 1))
                 {
-                    return false;
+                    astronautCleared = false;
                 }
                 if (astronaut.Birthdate < DateTime.Now.Subtract(TimeSpan.FromDays(DaysPerYear * MaximumAge)))
                 {
-                    return false;
+                    astronautCleared = false;
                 }
+
+                if (rosterData.CaptainName == astronaut.Name)
+                    clearedData.Captain = astronautCleared;
+                else if (rosterData.SecondInCommandName == astronaut.Name)
+                    clearedData.SecondInCommand = astronautCleared;
+                else if (rosterData.NavigatorName == astronaut.Name)
+                    clearedData.Navigator = astronautCleared;
+                else if (rosterData.EngineerName == astronaut.Name)
+                    clearedData.Engineer = astronautCleared;
+
+                result = result && astronautCleared;
+                var callback = OperationContext.Current.GetCallbackChannel<ICallbackFinalCheck>();
+                if (callback != null)
+                {
+                    callback.SendClearedData(clearedData);
+                }
+                Thread.Sleep(1000);
             }
-            return true;
+            return result;
         }
 
         public bool DoPreliminaryCheckup(FlightRosterData data)
@@ -79,7 +106,7 @@ namespace WCF_Demo.Services
             return result;
         }
 
-        [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = false)] //autocomplete is default true
+        [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = true)] //autocomplete is default true
         public void SetNames(IEnumerable<string> input)
         {
             for (int i = 0; i < input.Count(); i++)
@@ -90,13 +117,13 @@ namespace WCF_Demo.Services
                     throw new ArgumentException("Some exception");
                 }
             }
-           OperationContext.Current.SetTransactionComplete();
+           //OperationContext.Current.SetTransactionComplete();
 
         }
 
         public void ThrowException()
         {
-            //var ex = new ArgumentNullException("But we don't have parameters!");
+            var ex = new ArgumentNullException("But we don't have parameters!");
             var faultData = new MyFaultData
             {
                 Name = "ThrowException",

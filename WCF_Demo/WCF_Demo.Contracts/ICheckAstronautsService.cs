@@ -12,8 +12,6 @@ namespace WCF_Demo.Contracts
     {
         [OperationContract(IsInitiating = false)]
         bool DoPreliminaryCheckup(FlightRosterData data);
-        [OperationContract(IsInitiating = false, IsTerminating = true)]
-        bool DoFinalCheckup(FlightRosterData data);
         [OperationContract]
         AstronautData GetAstronaut(string name);
         [OperationContract]

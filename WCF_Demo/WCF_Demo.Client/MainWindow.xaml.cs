@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +22,7 @@ namespace WCF_Demo.Client
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, ICallbackFinalCheck
     {
         private CheckAstronautClient _proxy;
         public CheckAstronautClient Proxy {
@@ -37,7 +39,10 @@ namespace WCF_Demo.Client
         public MainWindow()
         {
             InitializeComponent();
+            context = SynchronizationContext.Current;
         }
+
+        SynchronizationContext context = null;
 
         private void Preliminary_Click(object sender, RoutedEventArgs e)
         {
@@ -53,18 +58,42 @@ namespace WCF_Demo.Client
             }
         }
 
-        private void Final_Click(object sender, RoutedEventArgs e)
+        private async void Final_Click(object sender, RoutedEventArgs e)
         {
             var validData = FormIsValid();
             (sender as Button).Background = validData ? Brushes.LightGray : Brushes.Red;
             if (validData)
             {
                 var data = ParseForm();
-                var proxy = new CheckAstronautClient();
-                var passed = proxy.DoFinalCheckup(data);
-                FinalResult.Text = passed.ToString();
-                proxy.Close();
+                await Task.Run(() =>
+                {
+                    var proxy = new FinalCheckAstronautClient(new InstanceContext(this));
+                    var passed = proxy.DoFinalCheckup(data);
+                    FilltextBox(passed);
+                    proxy.Close();
+                });
             }
+        }
+
+        private void FilltextBox(bool passed)
+        {
+            SendOrPostCallback updateUI = new SendOrPostCallback(arg =>
+            {
+                FinalResult.Text = passed.ToString();
+            });
+            context.Send(updateUI, null);
+        }
+
+        public void SendClearedData(RosterClearedData data)
+        {
+            SendOrPostCallback updateUI = new SendOrPostCallback(arg =>
+            {
+                CaptainCleared.IsChecked = data.Captain;
+                SecondCleared.IsChecked = data.SecondInCommand;
+                NavigatorCleared.IsChecked = data.Navigator;
+                EngineerCleared.IsChecked = data.Engineer;
+            });
+            context.Send(updateUI, null);
         }
 
         private void SendNames_Click(object sender, RoutedEventArgs evt)
