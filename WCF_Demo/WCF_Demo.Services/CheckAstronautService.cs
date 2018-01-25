@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
@@ -109,6 +111,7 @@ namespace WCF_Demo.Services
         [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = true)] //autocomplete is default true
         public void SetNames(IEnumerable<string> input)
         {
+
             for (int i = 0; i < input.Count(); i++)
             {
                 names += ";" + input.ElementAt(i);
@@ -162,6 +165,27 @@ namespace WCF_Demo.Services
                 db.GetAstronaut(data.EngineerName)
             };
             return result;
+        }
+
+        /// <summary>
+        /// Method that gets all different identities that you can use.
+        /// </summary>
+        private string GetIdentityName()
+        {
+            string hostIdentity = WindowsIdentity.GetCurrent().Name;
+            string primaryIdentity = ServiceSecurityContext.Current.PrimaryIdentity.Name;
+            string windowsIdentity = ServiceSecurityContext.Current.WindowsIdentity.Name;
+            string threadIdentity = Thread.CurrentPrincipal.Identity.Name;
+            return threadIdentity;
+        }
+
+        /// <summary>
+        /// Operation that can only be entered when Authorized as an Identity in the Administrators group
+        /// </summary>
+        [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
+        public void AdminOperation()
+        {
+            //Do some administrator things here...
         }
     }
 }
